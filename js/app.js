@@ -9,9 +9,6 @@
 // The names and URLs to all of the feeds we'd like available.
 var allFeeds = [
     {
-        name: 'Udacity Blog',
-        url: 'http://blog.udacity.com/feed'
-    }, {
         name: 'CSS Tricks',
         url: 'http://feeds.feedburner.com/CssTricks'
     }, {
@@ -20,6 +17,9 @@ var allFeeds = [
     }, {
         name: 'Linear Digressions',
         url: 'http://feeds.feedburner.com/udacity-linear-digressions'
+    }, {
+        name: 'Udacity Blog',
+        url: 'http://blog.udacity.com/feed'
     }
 ];
 
