@@ -1,3 +1,4 @@
+'use strict'
 /* feedreader.js
  *
  * This is the spec file that Jasmine will read and contains
@@ -9,6 +10,7 @@
  * to ensure they don't run until the DOM is ready.
  */
 $(function() {
+
     /* This is our first test suite - a test suite just contains
     * a related set of tests. This suite is all about the RSS
     * feeds definitions, the allFeeds variable in our application.
@@ -32,7 +34,7 @@ $(function() {
          * and that the URL is not empty.
          */
         it('have URL defined and it is not Empty', function() {
-            for(feed of allFeeds) {
+            for(let feed of allFeeds) {
                 expect(feed.url).toBeDefined();
                 expect(feed.url).not.toBeNull();
             };
@@ -43,7 +45,7 @@ $(function() {
          * and that the name is not empty.
          */
         it('have a NAME defined and it is not Empty', function() {
-            for(feed of allFeeds) {
+            for(let feed of allFeeds) {
                 expect(feed.name).toBeDefined();
                 expect(feed.name).not.toBeNull();
             };
@@ -93,33 +95,38 @@ $(function() {
 
         it('are called and COMPLETED JOB with at least one entry', function(done) {
             const feed = document.querySelector('.feed');
-            console.log(feed.childElementCount);
+            // console.log(feed.childElementCount);
             expect(feed.childElementCount).toBeGreaterThan(0);
             done();
         });
     });
     /* TODO: Write a new test suite named "New Feed Selection" */
-    describe('New Feed Selection', function() {
+
+    describe('New Feed Selection', () => {
 
         /* TODO: Write a test that ensures when a new feed is loaded
         * by the loadFeed function that the content actually changes.
         * Remember, loadFeed() is asynchronous.
         */
-        let feed_org;
-        let feed_new;
+        var feed1,
+            feed0;
 
-        it('feed is not null and loads new feed', function(done) {
-            feed_org = document.querySelector('.feed').innerHTML;
-            expect(feed_org).not.toBeNull();
-            loadFeed(1, function() {
-                done();
+        beforeEach((done) => {
+            loadFeed(1, ()  => {
+                feed1 = document.querySelector('.entry>h2').innerHTML;
+                loadFeed(0, () => {
+                    done();
+                });
             });
         });
 
-        it('new feed is not null and changed', function(done) {
-            feed_new = document.querySelector('.feed').innerHTML;
-            expect(feed_new).not.toBeNull();
-            expect(feed_new).not.toBe(feed_org);
+        it('feed is defined and content is CHANGING', (done) => {
+            feed0 = document.querySelector('.entry>h2').innerHTML;
+            console.log('feed0: ' + feed0);
+            console.log('feed1: ' + feed1);
+            expect(feed0).not.toBe(undefined);
+            expect(feed1).not.toBe(undefined);
+            expect(feed1).not.toBe(feed0);
             done();
         });
     });
