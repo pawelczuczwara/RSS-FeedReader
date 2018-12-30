@@ -1,7 +1,7 @@
 # Project Overview
 
  JavaScript application that reads RSS feeds from predefined sources.
- Includes 7 test specyfications written in JavaScript [Jasmine](http://jasmine.github.io/).
+ Includes 7 test specyfications written in JavaScript [Jasmine] framework (http://jasmine.github.io/).
 
 ## Where are Jasmine spec code?
 
